@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+  Registro de Empresas | Innova Talent
+{% endblock %}
+
+{% block content %}
+  <h2>Registro para CEOs / Empresas</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Registrarse</button>
+  </form>
+{% endblock %}

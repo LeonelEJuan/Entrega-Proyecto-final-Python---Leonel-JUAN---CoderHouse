@@ -1,0 +1,46 @@
+{% extends "core/base.html" %}
+
+{% block title %}Inicio - Innova Talent{% endblock %}
+
+{% block content %}
+<div style="text-align: center;">
+  <h2>🚀 ¿Sos CEO o liderás una empresa?</h2>
+  <p style="font-size: 1.2rem;">Te ayudamos a conectar con perfiles IT de calidad.</p>
+
+  <a href="{% url 'register_ceo' %}" style="background-color: #007BFF; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; margin-top: 1rem; display: inline-block;">Registrate gratis</a>
+</div>
+
+<hr style="margin: 2rem 0;">
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
+  <div style="max-width: 300px;">
+    <h3>📌 ¿Qué hacemos?</h3>
+    <p>Brindamos asesoramiento en reclutamiento IT para startups y empresas tecnológicas. Te ayudamos a definir el perfil, buscar talento, y optimizar el proceso.</p>
+  </div>
+
+  <div style="max-width: 300px;">
+    <h3>💡 ¿Cómo funciona?</h3>
+    <ol style="text-align: left;">
+      <li>Te registrás como CEO o empresa.</li>
+      <li>Completás un formulario indicando qué perfil IT necesitás.</li>
+      <li>Podés agendar una reunión por Google Meet.</li>
+    </ol>
+  </div>
+
+  <div style="max-width: 300px;">
+    <h3>🔗 ¿Qué incluye?</h3>
+    <ul style="text-align: left;">
+      <li>Asesoramiento gratuito inicial.</li>
+      <li>Acceso a nuestro equipo de reclutadores IT.</li>
+      <li>Publicación de búsquedas personalizadas.</li>
+    </ul>
+  </div>
+</div>
+
+<hr style="margin: 2rem 0;">
+
+<div style="text-align: center;">
+  <h3>📅 ¿Querés que hablemos?</h3>
+  <a href="https://calendly.com/innovatalent/30min" target="_blank" style="background-color: #fbbc05; color: black; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Agendá una reunión por Google Meet</a>
+</div>
+{% endblock %}

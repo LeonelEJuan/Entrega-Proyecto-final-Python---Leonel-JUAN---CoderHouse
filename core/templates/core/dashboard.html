@@ -1,0 +1,34 @@
+{% extends "core/base.html" %}
+
+{% block title %}Panel de Usuario{% endblock %}
+
+{% block content %}
+  <h2>Bienvenido, {{ user.first_name }} {{ user.last_name }} 👋</h2>
+  <p>Este es tu panel de control personal.</p>
+
+  <ul>
+    <li><strong>Usuario:</strong> {{ user.username }}</li>
+    <li><strong>Email:</strong> {{ user.email }}</li>
+    <li><strong>Empresa:</strong> {{ user.company }}</li>
+    <li><strong>Cargo:</strong> {{ user.position }}</li>
+    <li><strong>Fecha de ingreso:</strong> {{ user.date_joined|date:"d/m/Y" }}</li>
+  </ul>
+
+  <hr>
+
+  <h3>¿Qué te gustaría hacer?</h3>
+  <ul style="list-style-type: none; padding: 0;">
+    <li>
+      <a href="{% url 'recruitment_request' %}" style="display: inline-block; background-color: #007BFF; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">📥 Solicitar perfiles IT</a>
+    </li>
+    <li style="margin-top: 10px;">
+      <a href="{% url 'create_page' %}" style="display: inline-block; background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none;">📝 Crear publicación</a>
+    </li>
+    <li style="margin-top: 10px;">
+      <a href="https://calendly.com/innovatalent/30min" target="_blank"
+         style="display: inline-block; background-color: #fbbc05; color: black; padding: 10px 20px; border-radius: 5px; text-decoration: none;">
+        📅 Agendar reunión por Google Meet
+      </a>
+    </li>
+  </ul>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Solicitud de Reclutamiento{% endblock %}
+
+{% block content %}
+  <h2>📝 Solicitud de Reclutamiento</h2>
+
+  <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">📤 Enviar solicitud</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Lista de páginas{% endblock %}
+
+{% block content %}
+<h2>Lista de blogs 📚</h2>
+
+{% if pages %}
+    {% for page in pages %}
+        <div style="border:1px solid #ccc; padding:15px; margin-bottom:15px; border-radius: 8px; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
+            <h3 style="margin-bottom: 5px;">{{ page.title }}</h3>
+            <h4 style="margin-top: 0;">{{ page.subtitle }}</h4>
+            <p><strong>Autor:</strong> {{ page.author }}</p>
+            <p><strong>Fecha:</strong> {{ page.date|date:"d M Y - H:i" }}</p>
+
+            <a href="{% url 'page_detail' page.id %}" style="margin-right: 10px;">👁 Ver más</a>
+
+            {% if user.is_authenticated and user == page.author %}
+                <a href="{% url 'edit_page' page.id %}" style="margin-right: 10px;">✏️ Editar</a>
+                <form method="post" action="{% url 'delete_page' page.id %}" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que querés eliminar esta página?');">
+                    {% csrf_token %}
+                    <button type="submit" style="background: none; border: none; color: red; cursor: pointer;">
+                        🗑 Eliminar
+                    </button>
+                </form>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>😕 No hay páginas aún.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+# Entorno virtual
+env/
+venv/
+
+# Archivos de configuración del sistema
+*.vscode/
+*.idea/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos sensibles
+*.env
+
+# Archivos estáticos y de medios (si los tenés)
+staticfiles/
+media/
