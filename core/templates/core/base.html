@@ -121,21 +121,31 @@
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
         }
-.btn-contacto {
-    display: inline-block;
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
 
-.btn-contacto:hover {
-    background-color: #0056b3;
-}
+        .btn-contacto {
+            display: inline-block;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
 
+        .btn-contacto:hover {
+            background-color: #0056b3;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            border: 1px solid #c3e6cb;
+            font-weight: bold;
+        }
     </style>
     {% block extra_head %}{% endblock %}
 </head>
@@ -146,61 +156,64 @@
     </header>
 
     <nav>
+        <a href="{% url 'home' %}">🏠 Inicio</a>
+        <a href="{% url 'page_list' %}" style="background-color: #17a2b8; border-radius: 4px;">📚 Blog</a>
 
-    <a href="{% url 'home' %}">🏠 Inicio</a>
-    <a href="{% url 'page_list' %}" style="background-color: #17a2b8; border-radius: 4px;">📚 Blog</a>
+        {% if user.is_authenticated and user.is_superuser %}
+            <a href="/admin/">Admin</a>
+        {% endif %}
 
-    {% if user.is_authenticated and user.is_superuser %}
-        <a href="/admin/">Admin</a>
-    {% endif %}
+        <a href="{% url 'register_ceo' %}">📝 Registrarse</a>
 
-    <a href="{% url 'register_ceo' %}">📝 Registrarse</a>
-
-    {% if user.is_authenticated %}
-        <div class="dropdown">
-            <button style="background:none; border:none; color:white; cursor:pointer; font-weight:bold;">
-                {{ user.username }} ▼
-            </button>
-            <div class="dropdown-content">
-                <a href="{% url 'dashboard' %}">👤 Mi perfil</a>
-                <form method="post" action="{% url 'logout' %}" style="margin: 0;">
-                    {% csrf_token %}
-                    <button type="submit" style="
-                        background: none;
-                        border: none;
-                        color: #d00;
-                        padding: 10px;
-                        width: 100%;
-                        text-align: left;
-                        cursor: pointer;
-                        font-weight: bold;
-                    ">
-                        🔓 Cerrar sesión
-                    </button>
-                </form>
+        {% if user.is_authenticated %}
+            <div class="dropdown">
+                <button style="background:none; border:none; color:white; cursor:pointer; font-weight:bold;">
+                    {{ user.username }} ▼
+                </button>
+                <div class="dropdown-content">
+                    <a href="{% url 'dashboard' %}">👤 Mi perfil</a>
+                    <form method="post" action="{% url 'logout' %}" style="margin: 0;">
+                        {% csrf_token %}
+                        <button type="submit" style="
+                            background: none;
+                            border: none;
+                            color: #d00;
+                            padding: 10px;
+                            width: 100%;
+                            text-align: left;
+                            cursor: pointer;
+                            font-weight: bold;
+                        ">
+                            🔓 Cerrar sesión
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
-    {% else %}
-        <a href="{% url 'login' %}" class="btn-login">🔐 Iniciar sesión</a>
-    {% endif %}
-
+        {% else %}
+            <a href="{% url 'login' %}" class="btn-login">🔐 Iniciar sesión</a>
+        {% endif %}
     </nav>
 
     <main class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert-success">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
         {% block content %}
         {% endblock %}
     </main>
 
     <footer> 
-    <p>&copy; 2025 Innova Talent. Todos los derechos reservados.</p>
-    <div style="margin-top: 10px; text-align: center;">
-        <a href="https://sites.google.com/view/innovatalenthr/inicio" target="_blank"
-           class="btn-contacto">
-            📞 CONTACTANOS
-        </a>
-    </div>
-</footer>
-
+        <p>&copy; 2025 Innova Talent. Todos los derechos reservados.</p>
+        <div style="margin-top: 10px; text-align: center;">
+            <a href="https://sites.google.com/view/innovatalenthr/inicio" target="_blank"
+               class="btn-contacto">
+                📞 CONTACTANOS
+            </a>
+        </div>
+    </footer>
 
     {% if user.is_authenticated %}
     <script>

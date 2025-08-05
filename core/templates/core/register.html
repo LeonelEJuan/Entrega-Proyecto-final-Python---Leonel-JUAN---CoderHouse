@@ -6,6 +6,13 @@
 
 {% block content %}
   <h2>Registro para CEOs / Empresas</h2>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert-success">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Page
 from .forms import CEORegisterForm, PageForm, RecruitmentRequestForm
+from django.contrib import messages
+
 
 # Vista para listar páginas del blog
 def page_list(request):
@@ -13,16 +15,17 @@ def page_detail(request, page_id):
     page = get_object_or_404(Page, id=page_id)
     return render(request, 'core/page_detail.html', {'page': page})
 
-# Vista para registrar un CEO o empresa
 def register_ceo(request):
     if request.method == 'POST':
         form = CEORegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')  # Redirige al login luego del registro
+            messages.success(request, '✅ ¡Registro exitoso! Iniciá sesión para continuar.')
+            return redirect('login')
     else:
         form = CEORegisterForm()
     return render(request, 'core/register.html', {'form': form})
+
 
 # Vista principal luego del login
 @login_required
@@ -78,5 +81,7 @@ def recruitment_request_view(request):
     else:
         form = RecruitmentRequestForm()
     return render(request, 'core/recruitment_request_form.html', {'form': form})
+
+# Vista para la home (landing)
 def home(request):
     return render(request, 'core/home.html')

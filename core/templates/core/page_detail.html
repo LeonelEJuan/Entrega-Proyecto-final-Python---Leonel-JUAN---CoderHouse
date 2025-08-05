@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %} 
+{% extends 'core/base.html' %}  
 
 {% block title %}{{ page.title }}{% endblock %}
 
@@ -21,9 +21,9 @@
     <a href="{% url 'page_list' %}" style="margin-right: 1rem;">⬅ Volver a la lista</a>
 
     {% if user.is_authenticated and user == page.author %}
-      <a href="{% url 'page_edit' page.id %}" style="margin-right: 1rem;">✏️ Editar</a>
+      <a href="{% url 'edit_page' page.id %}" style="margin-right: 1rem;">✎ Editar</a>
 
-      <form method="post" action="{% url 'page_delete' page.id %}" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que querés eliminar esta página? Esta acción no se puede deshacer.');">
+      <form method="post" action="{% url 'delete_page' page.id %}" style="display:inline;" onsubmit="return confirm('¿Estás seguro de que querés eliminar esta página? Esta acción no se puede deshacer.');">
         {% csrf_token %}
         <button type="submit" style="background: none; border: none; color: red; cursor: pointer;">
           🗑 Eliminar
