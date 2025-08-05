@@ -1,4 +1,6 @@
 # Entrega-Proyecto-final-Python---Leonel-JUAN---CoderHouse
+
+video=  https://drive.google.com/file/d/1aTPmGWmj3CqVOxMbWh9K1hLYgEFfwj57/view?usp=sharing
 Proyecto: Plataforma/Blog web de reclutamiento "Innova Talent" 
 
  Objetivo del proyecto
